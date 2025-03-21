@@ -2,7 +2,6 @@ package br.com.fmarc.exceptions.handler;
 
 import java.util.Date;
 
-import javax.management.OperationsException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

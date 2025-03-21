@@ -18,7 +18,7 @@ import br.com.fmarc.data.vo.v1.PersonVO;
 import br.com.fmarc.services.PersonService;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person-v1")
 public class PersonController {
 
 	@Autowired

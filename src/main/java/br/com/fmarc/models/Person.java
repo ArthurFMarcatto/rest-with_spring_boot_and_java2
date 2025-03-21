@@ -37,19 +37,19 @@ public class Person implements Serializable {
 	
 	public Person() {}
 
-	public String getFirstName() {
+	public String getFirstname() {
 		return firstname;
 	}
 
-	public void setFirstName(String firstname) {
+	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 
-	public String getLastName() {
+	public String getLastname() {
 		return lastname;
 	}
 
-	public void setLastName(String lastname) {
+	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
