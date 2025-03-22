@@ -1,9 +1,9 @@
-package br.com.fmarc.data.vo.v1;
+package br.com.fmarc.data.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonVO implements Serializable {
+public class PersonDTO implements Serializable {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class PersonVO implements Serializable {
 	private String address;
 	private String gender;
 
-	public PersonVO() {
+	public PersonDTO() {
 	}
 
 	public String getFirstname() {
@@ -72,7 +72,7 @@ public class PersonVO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PersonVO other = (PersonVO) obj;
+		PersonDTO other = (PersonDTO) obj;
 		return Objects.equals(address, other.address) && Objects.equals(firstname, other.firstname)
 				&& Objects.equals(gender, other.gender) && id == other.id && Objects.equals(lastname, other.lastname);
 	}

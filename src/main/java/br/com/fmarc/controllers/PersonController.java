@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fmarc.data.vo.v1.PersonVO;
+import br.com.fmarc.data.dto.PersonDTO;
 import br.com.fmarc.services.PersonService;
 
 @RestController
@@ -25,22 +25,22 @@ public class PersonController {
 	private PersonService service;
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<PersonVO> findAll() {
+	public List<PersonDTO> findAll() {
 		return service.findAll();
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public PersonVO findByID(@PathVariable("id") Long id) {
+	public PersonDTO findByID(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public PersonVO createPerson(@RequestBody PersonVO person) {
+	public PersonDTO createPerson(@RequestBody PersonDTO person) {
 		return service.createPerson(person);
 	}
 	
 	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public PersonVO updatePerson(@RequestBody PersonVO person) {
+	public PersonDTO updatePerson(@RequestBody PersonDTO person) {
 		return service.updatePerson(person);
 	}
 	

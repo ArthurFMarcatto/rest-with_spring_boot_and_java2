@@ -6,9 +6,9 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fmarc.data.vo.v1.PersonVO;
+import br.com.fmarc.data.dto.PersonDTO;
 import br.com.fmarc.exceptions.ResourceNotFoundException;
-import br.com.fmarc.mapper.DozerMapper;
+import br.com.fmarc.mapper.ObjectMapper;
 import br.com.fmarc.models.Person;
 import br.com.fmarc.repositories.PersonRepository;
 
@@ -20,29 +20,29 @@ public class PersonService {
 	@Autowired
 	PersonRepository repository;
 
-	public List<PersonVO> findAll() {
+	public List<PersonDTO> findAll() {
 		logger.info("Finding all people!");
-		return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class) ;
+		return ObjectMapper.parseListObjects(repository.findAll(), PersonDTO.class) ;
 	}
 
-	public PersonVO findById(Long id) {
+	public PersonDTO findById(Long id) {
 		logger.info("Finding one person!");
 
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 		
-		return DozerMapper.parseObject(entity, PersonVO.class);
+		return ObjectMapper.parseObject(entity, PersonDTO.class);
 	}
 
-	public PersonVO createPerson(PersonVO person) {
+	public PersonDTO createPerson(PersonDTO person) {
 
 		logger.info("Creating a person!");		
-		var entity = DozerMapper.parseObject(person, Person.class);			
-		var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+		var entity = ObjectMapper.parseObject(person, Person.class);			
+		var vo = ObjectMapper.parseObject(repository.save(entity), PersonDTO.class);
 		return vo;
 	}
 
-	public PersonVO updatePerson(PersonVO person) {
+	public PersonDTO updatePerson(PersonDTO person) {
 
 		logger.info("Updating a person!");
 
@@ -54,7 +54,7 @@ public class PersonService {
 		entity.setAddress(person.getAddress());
 		entity.setGender(person.getGender());
 
-		var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+		var vo = ObjectMapper.parseObject(repository.save(entity), PersonDTO.class);
 		return vo;
 
 	}
