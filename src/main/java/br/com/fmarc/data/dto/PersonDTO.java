@@ -42,6 +42,8 @@ public class PersonDTO implements Serializable {
 	// @JsonIgnore
 	@JsonSerialize(using = GenderSerializer.class)
 	private String gender;
+	
+	private String sensitiveData;
 
 	public PersonDTO() {
 	}
