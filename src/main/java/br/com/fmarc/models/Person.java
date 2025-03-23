@@ -1,6 +1,7 @@
 package br.com.fmarc.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -18,24 +19,31 @@ public class Person implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "first_name", nullable = false, length = 60)
+
+	@Column(name = "first_name", nullable = false)
 	private String firstname;
-	
-	@Column(name = "last_name", nullable = false, length = 60)
+
+	@Column(name = "last_name", nullable = false)
 	private String lastname;
-	
+
+	@Column(name = "birth_day", nullable = false)
+	private Date birthday;
+
+	@Column(name = "phone_number", nullable = false)
+	private String phonenumber;
+
 	@Column(nullable = false, length = 255)
 	private String address;
-	
-	@Column (nullable = false, length = 6)
+
+	@Column(nullable = false, length = 6)
 	private String gender;
-	
-	public Person() {}
+
+	public Person() {
+	}
 
 	public String getFirstname() {
 		return firstname;
@@ -68,7 +76,7 @@ public class Person implements Serializable {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -77,9 +85,25 @@ public class Person implements Serializable {
 		return this.id = id;
 	}
 
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, firstname, gender, id, lastname);
+		return Objects.hash(address, birthday, firstname, gender, id, lastname, phonenumber);
 	}
 
 	@Override
@@ -91,9 +115,11 @@ public class Person implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
-		return Objects.equals(address, other.address) && Objects.equals(firstname, other.firstname)
-				&& Objects.equals(gender, other.gender) && id == other.id && Objects.equals(lastname, other.lastname);
+		return Objects.equals(address, other.address) && Objects.equals(birthday, other.birthday)
+				&& Objects.equals(firstname, other.firstname) && Objects.equals(gender, other.gender)
+				&& Objects.equals(id, other.id) && Objects.equals(lastname, other.lastname)
+				&& Objects.equals(phonenumber, other.phonenumber);
 	}
-
+	
 	
 }

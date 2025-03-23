@@ -22,7 +22,7 @@ public class PersonService {
 
 	public List<PersonDTO> findAll() {
 		logger.info("Finding all people!");
-		return ObjectMapper.parseListObjects(repository.findAll(), PersonDTO.class) ;
+		return ObjectMapper.parseListObjects(repository.findAll(), PersonDTO.class);
 	}
 
 	public PersonDTO findById(Long id) {
@@ -30,14 +30,14 @@ public class PersonService {
 
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-		
+
 		return ObjectMapper.parseObject(entity, PersonDTO.class);
 	}
 
 	public PersonDTO createPerson(PersonDTO person) {
 
-		logger.info("Creating a person!");		
-		var entity = ObjectMapper.parseObject(person, Person.class);			
+		logger.info("Creating a person!");
+		var entity = ObjectMapper.parseObject(person, Person.class);
 		var vo = ObjectMapper.parseObject(repository.save(entity), PersonDTO.class);
 		return vo;
 	}
@@ -53,6 +53,8 @@ public class PersonService {
 		entity.setLastname(person.getLastname());
 		entity.setAddress(person.getAddress());
 		entity.setGender(person.getGender());
+		entity.setBirthday(person.getBirthday());
+		entity.setPhonenumber(person.getPhonenumber());
 
 		var vo = ObjectMapper.parseObject(repository.save(entity), PersonDTO.class);
 		return vo;
@@ -62,13 +64,11 @@ public class PersonService {
 	public void deletePerson(Long id) {
 
 		logger.info("Deleting a person!");
-		
+
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-		
+
 		repository.delete(entity);
 	}
-
-
 
 }
